@@ -43,17 +43,23 @@ function removeProduct(event) {
 
 // ITERATION 5
 
-function createProduct() {
+function createProduct(productName, unitPrice) {
   //... your code goes here
   addRow();
 }
 
 function addRow(){
-  let totalCells = 5;
+  const totalCells = 5;
   let tbody = document.querySelector('#cart tbody');
   let newRow = tbody.insertRow();
+  newRow.className = 'product';
   for(let i = 0; i < totalCells; i++){
-    newRow.insertCell()
+    if(i = 0){
+      newRow.insertCell();
+    } else {
+      newRow.insertCell();
+    }
+  
   }
 }
 
