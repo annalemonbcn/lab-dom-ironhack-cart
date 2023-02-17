@@ -41,13 +41,13 @@ function removeProduct(event) {
 }
 
 // ITERATION 5
-
 function createProduct() {
   //... your code goes here
   // Get values
   let productName = document.querySelector('.create-product input[type=text]');
   let productPrice = document.querySelector('.create-product input[type=number]');
   const totalCells = 5;
+
   // Create structure
   let tbody = document.querySelector('#cart tbody');
   let newRow = tbody.insertRow();
