@@ -33,7 +33,6 @@ function calculateAll() {
 // ITERATION 4
 function removeProduct(event) {
   const target = event.currentTarget;
-
   //... your code goes here
    // Delete tr from currentTarget
    target.closest('.product').remove();
@@ -43,24 +42,51 @@ function removeProduct(event) {
 
 // ITERATION 5
 
-function createProduct(productName, unitPrice) {
+function createProduct() {
   //... your code goes here
-  addRow();
-}
-
-function addRow(){
+  // Get values
+  let productName = document.querySelector('.create-product input[type=text]');
+  let productPrice = document.querySelector('.create-product input[type=number]');
   const totalCells = 5;
+  // Create structure
   let tbody = document.querySelector('#cart tbody');
   let newRow = tbody.insertRow();
   newRow.className = 'product';
+  // Creating cells
   for(let i = 0; i < totalCells; i++){
-    if(i = 0){
-      newRow.insertCell();
-    } else {
-      newRow.insertCell();
-    }
-  
+    // Add content to cells
+    let newCell = newRow.insertCell();
+    switch(i){
+      // Product name
+      case 0:
+        newCell.classList.add('name');
+        newCell.innerHTML = productName.value;
+        break;
+      // Price
+      case 1:
+        newCell.classList.add('price');
+        newCell.innerHTML = '$<span>' + Number(productPrice.value).toFixed(2) + '</span>';
+        break;
+      // Qty
+      case 2:
+        newCell.classList.add('quantity');
+        newCell.innerHTML = '<input type="number" value="0" min="0" placeholder="Quantity">';
+        break;
+      // Subtotal
+      case 3:
+        newCell.classList.add('subtotal');
+        newCell.innerHTML = '$<span>0</span>';
+        break;
+      // Btn remove
+      case 4:
+        newCell.classList.add('action');
+        newCell.innerHTML = '<button onclick="removeProduct(event)" class="btn btn-remove">Remove</button>';
+        break;
+    }  
   }
+  // Reset input values
+  productName.value = '';
+  productPrice.value = '0'
 }
 
 window.addEventListener('load', () => {
@@ -72,7 +98,7 @@ window.addEventListener('load', () => {
   let removeItemBtns = document.querySelectorAll('.btn-remove');
   removeItemBtns.forEach(function(btn){
     btn.addEventListener('click', removeProduct);
-  })
+  });
 
   // Add event to "create product" btn
   let createProductBtn = document.querySelector('#create');
